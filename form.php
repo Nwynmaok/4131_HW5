@@ -7,16 +7,42 @@
   <script src="script.js"></script>
 </head>
 
+<?php
+  if (isset($_POST['myEvent'])) {
+
+    $eventname = $_POST["eventname"];
+    $day = $_POST["day"];
+    $starttime = $_POST["starttime"];
+    $endtime = $_POST["endtime"];
+    $location = $_POST["location"];
+
+    $json = json_decode(file_get_contents('calendar.txt'), TRUE);
+    $eventCount = count($json);
+    $eventnum = "event" . $eventCount;
+
+    $json[$eventnum] = array("eventname" => $eventname, "day" => $day, "starttime" => $starttime, "endtime" => $endtime, "location" => $location);
+    file_put_contents('calendar.txt', json_encode($json));
+    header('Location: calendar.php');
+  }
+
+  if (isset($_POST['clearEvents'])) {
+    file_put_contents('calendar.txt', "");
+    header('Location: calendar.php');
+  }
+
+
+?>
+
 <body>
   <h1>Calendar Input</h1>
   <div class="menu">
     <nav>
-      <a href="calendar.html">My Calendar</a>
-      <a href="form.html">Form Input</a>
+      <a href="calendar.php">My Calendar</a>
+      <a href="form.php">Form Input</a>
     </nav>
   </div>
   <br>
-  <form name = "myForm" action="http://www-users.cselabs.umn.edu/~tulaj001/form_handler.php" onsubmit="return validateForm()" method="get">
+  <form name = "myForm" action="form.php" onsubmit="return validateForm()" method="POST">
     <div class="form">
       <table>
         <tr>
@@ -61,12 +87,20 @@
         <tr>
           <th></th>
           <th>
-            <input type = "submit" value = "Submit">
+            <input type = "submit" value = "Submit" name="myEvent">
+            </form>
+          </th>
+        </tr>
+        <tr>
+          <th></th>
+          <th>
+            <form name = "clearCal" action="form.php" onsubmit="return confirm('Are you sure you want to delete all events? You cannot undo this.');" method="POST">
+              <input type="submit" value="Clear all calendar events" name="clearEvents">
+            </form>
           </th>
         </tr>
       </table>
     </div>
-  </form>
   <footer>
     <br>
     Tested in Chrome, Safari and Firefox

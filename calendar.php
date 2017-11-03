@@ -15,8 +15,8 @@
   <div class="container1">
     <div class="menu">
       <nav>
-        <a href="calendar.html">My Calendar</a>
-        <a href="form.html">Form Input</a>
+        <a href="calendar.php">My Calendar</a>
+        <a href="form.php">Form Input</a>
       </nav>
     </div>
     <div class="wrapper">
@@ -27,7 +27,7 @@
         <table class="item1">
           <tr class = "item3">
             <th><span class="dayheader">Monday</span></th>
-            <td id="Keller1" onmouseover="Keller1Hover();" onmouseleave="Keller1Unhover();">
+            <td>
               <span id="day1class1">CSCI 5115</span><br>
               <span class="time" id="day1time1">9:45 AM - 11:00 AM</span><br>
               <span id="day1location1">Keller Hall 3-111, MN</span>
