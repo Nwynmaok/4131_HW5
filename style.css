@@ -1,0 +1,233 @@
+h1 {
+  text-align: center;
+}
+
+.menu {
+  background-color: #800000;
+  text-align : center;
+  width:100%;
+}
+
+.menu a {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.menu a:link{
+  font-size: 26px;
+  color: white;
+}
+
+.menu a:visited {
+  font-size: 26px;
+  color: yellow;
+}
+
+.form table {
+  margin: auto;
+  width: 60%;
+  text-align: right;
+}
+
+body {
+    margin: 0;
+    width: 100%;
+}
+html{
+    background-color: lightgrey;
+}
+.container1 {
+    width: 100%;
+    background-color: white;
+}
+
+.item1 {
+    background-color: lightyellow;
+    height: 100%;
+    width: 100%;
+    line-height: 5px;
+    color:#800000;;
+    text-align: left;
+    margin-top: 10px;
+}
+
+.item1 h2 {
+  left: 20px;
+  top: 20px;
+  position: relative;
+}
+
+.item2 {
+  background-color: gold;
+  width: 20%;
+  height: 180px;
+
+  font-size: 1em;
+  padding-top: 10px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.item2 th {
+  border-right: 5px solid #800000;
+}
+
+.item3 th {
+  border-right: 5px solid #800000;
+}
+
+.item3 {
+  width: 20%;
+  height: 180px;
+
+  font-size: 1em;
+  padding-top: 10px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.dayheader {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.time {
+  font-style: italic;
+}
+
+.wrapper {
+  position: relative;
+  overflow: hidden;
+  height: 20px;
+  width: 100%;
+  padding-top: 5px;
+}
+
+.wrapper p {
+  position: absolute;
+  margin: 0;
+  line-height: 25px;
+  height: 100%;
+  width: 100%;
+  white-space: nowrap;
+  animation: marquee 20s linear infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+/*#FraserPic {
+  display: none;
+}
+#KellerPic {
+  display: none;
+}
+#BruininksPic {
+  display:none;
+}
+
+.Pic {
+  width:100%;
+  height:100%;
+}
+.initPic {
+  width:100%;
+  height:100%;
+}*/
+
+#Keller1 {
+  background-size: 300px 200px;
+}
+#Keller2 {
+  background-size: 300px 200px;
+}
+#Keller3 {
+  background-size: 300px 200px;
+}
+#Keller4 {
+  background-size: 300px 200px;
+}
+#Keller5 {
+  background-size: 300px 200px;
+}
+#Bruininks1 {
+  background-size: 300px 200px;
+}
+#Bruininks2 {
+  background-size: 300px 200px;
+}
+#Bruininks3 {
+  background-size: 300px 200px;
+}
+#Bruininks4 {
+  background-size: 300px 200px;
+}
+#Fraser1 {
+  background-size: 300px 250px;
+}
+#Fraser2 {
+  background-size: 300px 250px;
+}
+#Lind1 {
+  background-size: 300px 250px;
+}
+
+.table {
+  width: 75%;
+  float: left;
+}
+
+.twitter {
+  width: 25%;
+  margin-left: 75%;
+}
+
+.container2 {
+  width: 100%;
+}
+
+#map {
+  height: 800px;
+  width: 100%;
+}
+#restaurantRange {
+  width: 100%;
+}
+
+#numberrange {
+  height: 200px;
+}
+#mileRange {
+  text-align: center;
+  width:100%;
+  padding-bottom: 15px;
+  padding-top: 10px;
+  line-height: 150%;
+}
+#mileIncr {
+  text-align: center;
+}
+#travelType {
+  padding-top: 30px;
+  line-height: 150%;
+}
+#buttonholder {
+  text-align: center;
+  line-height: 200%;
+}
+#directionsPanel {
+  width: 25%;
+  margin-left: 75%;
+  height: 800px;
+  display: none;
+  overflow: scroll;
+}
+#footer {
+  display: inline-block;
+  width: 100%;
+}
+#mapInput {
+  height: 318px;
+}
