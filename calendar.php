@@ -26,91 +26,31 @@
       <div class="table">
         <table class="item1">
           <tr class = "item3">
-            <th><span class="dayheader">Monday</span></th>
-            <td>
-              <span id="day1class1"></span><br>
-              <span class="time" id="day1time1"></span><br>
-              <span id="day1location1"></span>
-            </td>
-            <td>
-              <span id="day1class2"></span><br>
-              <span class="time" id="day1time2"></span><br>
-              <span id="day1location2"></span><br>
-            </td>
-            <td id="Fraser1" onmouseover="Fraser1Hover();" onmouseleave="Fraser1Unhover();">
-              <span id="day1class3">CSCI 4131</span><br>
-              <span class="time" id="day1time3">1:00 PM - 2:15 PM</span><br>
-              <span id="day1location3">Fraser Hall 101, MN</span>
-            </td>
-            <td id="Bruininks2" onmouseover="Bruininks2Hover();" onmouseleave="Bruininks2Unhover();">
-              <span id="day1class4">CSCI 3081W</span><br>
-              <span class="time" id="day1time4">4:00 PM - 5:15 PM</span><br>
-              <span id="day1location4">Bruininks Hall 1-114, MN</span><br>
-              <a id="day1git2" href="https://github.umn.edu/umn-csci-3081F17">Github</a>
-            </td>
+            <th><span class="Sunday">Sunday</span></th>
           </tr>
           <tr class = "item2">
-            <th><span class="dayheader">Tuesday</span></th>
-            <td></td>
-            <td></td>
-            <td id="Keller2" onmouseover="Keller2Hover();" onmouseleave="Keller2Unhover();">
-              <span id="day2class1">CSCI 4707</span><br>
-              <span class="time" id="day2time1">1:00 PM - 2:15 PM</span><br>
-              <span id="day2location1">Keller Hall 3-230, MN</span>
-            </td>
-            <td id="Lind1" onmouseover="Lind1Hover();" onmouseleave="Lind1Unhover();">
-              <span id="day2class2">EWB Admin Meeting</span><br>
-              <span class="time" id="day2time2">9:00 PM - 9:30 PM</span><br>
-              <span id="day2location2">Lind Hall 109, MN</span>
-            </td>
+            <th><span class="Monday">Monday</span></th>
           </tr>
           <tr class="item3">
-            <th><span class="dayheader">Wednesday</span></th>
-            <td id="Keller3" onmouseover="Keller3Hover();" onmouseleave="Keller3Unhover();">
-              <span id="day3class1">CSCI 5115</span><br>
-              <span class="time" id="day3time1">9:45 AM - 11:00 AM</span><br>
-              <span id="day3location1">Keller Hall 3-111, MN</span>
-            </td>
-            <td id="Bruininks3" onmouseover="Bruininks3Hover();" onmouseleave="Bruininks3Unhover();">
-              <span id="day3class2">CSCI 5117</span><br>
-              <span class="time" id="day3time2">11:15 AM - 12:30 PM</span><br>
-              <span id="day3location2">Bruininks Hall 1-141A, MN</span><br>
-              <a id="day3git1" href="https://github.com/umn-5117-f17">Github</a>
-            </td>
-            <td id="Fraser2" onmouseover="Fraser2Hover();" onmouseleave="Fraser2Unhover();">
-              <span id="day3class3">CSCI 4131</span><br>
-              <span class="time" id="day3time3">1:00 PM - 2:15 PM</span><br>
-              <span id="day3location3">Fraser Hall 101, MN</span>
-            </td>
-            <td id="Bruininks4" onmouseover="Bruininks4Hover();" onmouseleave="Bruininks4Unhover();">
-              <span id="day3class4">CSCI 3081W</span><br>
-              <span class="time" id="day3time4">4:00 PM - 5:15 PM</span><br>
-              <span id="day3location4">Bruininks Hall 1-114, MN</span><br>
-              <a id="day3git2" href="https://github.umn.edu/umn-csci-3081F17">Github</a>
-            </td>
+            <th><span class="Tuesday">Tuesday</span></th>
           </tr>
           <tr class = "item2">
-            <th><span class="dayheader">Thursday</span></th>
-            <td></td>
-            <td></td>
-            <td id="Keller4" onmouseover="Keller4Hover();" onmouseleave="Keller4Unhover();">
-              <span id="day4class1">CSCI 4707</span><br>
-              <span class="time" id="day4time1">1:00 PM - 2:15 PM</span><br>
-              <span id="day4location1">Keller Hall 3-230, MN</span>
-            </td>
-            <td></td>
+            <th><span class="Wednesday">Wednesday</span></th>
           </tr>
           <tr class = "item3">
-            <th><span class="dayheader">Friday</span></th>
-            <td></td>
-            <td id="Keller5" onmouseover="Keller5Hover();" onmouseleave="Keller5Unhover();">
+            <th><span class="Thursday">Thursday</span></th>
+          </tr>
+          <tr class = "item2">
+            <th><span class="Friday">Friday</span></th>
+          </tr>
+          <tr class = "item3">
+            <th><span class="Saturday">Saturday</span></th>
+            <!-- <td id="Keller5" onmouseover="Keller5Hover();" onmouseleave="Keller5Unhover();">
               <span id="day5class1">CSCI 3081</span><br>
               <span class="time" id="day5time1">11:15 AM - 12:05 PM</span><br>
               <span id="day5location1">Keller Hall 1-250, MN</span><br>
               <a id="day5git" href="https://github.umn.edu/umn-csci-3081F17">Github</a>
-            </td>
-            <td></td>
-            <td></td>
+            </td> -->
           </tr>
         </table>
       </div>
