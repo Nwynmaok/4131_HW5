@@ -28,15 +28,14 @@
           <tr class = "item3">
             <th><span class="dayheader">Monday</span></th>
             <td>
-              <span id="day1class1">CSCI 5115</span><br>
-              <span class="time" id="day1time1">9:45 AM - 11:00 AM</span><br>
-              <span id="day1location1">Keller Hall 3-111, MN</span>
+              <span id="day1class1"></span><br>
+              <span class="time" id="day1time1"></span><br>
+              <span id="day1location1"></span>
             </td>
-            <td id="Bruininks1" onmouseover="Bruininks1Hover();" onmouseleave="Bruininks1Unhover();">
-              <span id="day1class2">CSCI 5117</span><br>
-              <span class="time" id="day1time2">11:15 AM - 12:30 PM</span><br>
-              <span id="day1location2">Bruininks Hall 1-141A, MN</span><br>
-              <a id="day1git1" href="https://github.com/umn-5117-f17">Github</a>
+            <td>
+              <span id="day1class2"></span><br>
+              <span class="time" id="day1time2"></span><br>
+              <span id="day1location2"></span><br>
             </td>
             <td id="Fraser1" onmouseover="Fraser1Hover();" onmouseleave="Fraser1Unhover();">
               <span id="day1class3">CSCI 4131</span><br>
