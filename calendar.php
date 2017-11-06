@@ -86,41 +86,73 @@
     <div class="container2">
       <div class="table">
         <table class="item1">
-          <tr class = "item3">
-            <th><span class="Sunday">Sunday</span></th>
+          <?php
+            $emptySun = array_filter($Sunday);
+            if (!empty($emptySun)) {
+              echo  '<tr class = \'item3\'><th><span class="Sunday">Sunday</span></th>';
+            }
+          ?>
             <?php foreach($Sunday as $row) : ?>
               <td><?php echo $row['eventname'] ?></br>
               <?php echo $row['location'] ?></br>
               <?php echo $row['starttime'] . '-' . $row['endtime'] ?></td>
             <?php endforeach; ?>
-          </tr>
-          <tr class = "item2">
-            <th><span class="Monday">Monday</span></th>
+          <?php
+            if(!empty($emptySun)) {
+              echo '</tr>';
+            }
+          ?>
+          <?php
+            $emptyMon = array_filter($Monday);
+            if (!empty($emptyMon)) {
+              echo  '<tr class = \'item2\'><th><span class="Monday">Monday</span></th>';
+            }
+          ?>
             <?php foreach($Monday as $row) : ?>
               <td><?php echo $row['eventname'] ?></br>
               <?php echo $row['location'] ?></br>
               <?php echo $row['starttime'] . '-' . $row['endtime'] ?></td>
             <?php endforeach; ?>
-          </tr>
-          <tr class="item3">
-            <th><span class="Tuesday">Tuesday</span></th>
+          <?php
+            if(!empty($emptyMon)) {
+              echo '</tr>';
+            }
+          ?>
+          <?php
+            $emptyTue = array_filter($Tuesday);
+            if (!empty($emptyTue)) {
+              echo  '<tr class = \'item3\'><th><span class="Tuesday">Tuesday</span></th>';
+            }
+          ?>
             <?php foreach($Tuesday as $row) : ?>
               <td><?php echo $row['eventname'] ?></br>
               <?php echo $row['location'] ?></br>
               <?php echo $row['starttime'] . '-' . $row['endtime'] ?></td>
             <?php endforeach; ?>
-          </tr>
-          <tr class = "item2">
-            <th><span class="Wednesday">Wednesday</span></th>
+          <?php
+            if(!empty($emptyTue)) {
+              echo '</tr>';
+            }
+          ?>
+          <?php
+            $emptyWed = array_filter($Wednesday);
+            if (!empty($emptyWed)) {
+              echo  '<tr class = \'item2\'><th><span class="Wednesday">Wednesday</span></th>';
+            }
+          ?>
             <?php foreach($Wednesday as $row) : ?>
               <td><?php echo $row['eventname'] ?></br>
               <?php echo $row['location'] ?></br>
               <?php echo $row['starttime'] . '-' . $row['endtime'] ?></td>
             <?php endforeach; ?>
-          </tr>
           <?php
-            $empty = array_filter($Thursday);
-            if (!empty($empty)) {
+            if(!empty($emptyWed)) {
+              echo '</tr>';
+            }
+          ?>
+          <?php
+            $emptyThur = array_filter($Thursday);
+            if (!empty($emptyThur)) {
               echo  '<tr class = \'item3\'><th><span class="Thursday">Thursday</span></th>';
             }
           ?>
@@ -130,32 +162,42 @@
             <?php echo $row['starttime'] . '-' . $row['endtime'] ?></td>
           <?php endforeach; ?>
           <?php
-            if(!empty($empty)) {
+            if(!empty($emptyThur)) {
               echo '</tr>';
-            } 
+            }
           ?>
-          <tr class = "item2">
-            <th><span class="Friday">Friday</span></th>
+          <?php
+            $emptyFri = array_filter($Friday);
+            if (!empty($emptyFri)) {
+              echo  '<tr class = \'item2\'><th><span class="Friday">Friday</span></th>';
+            }
+          ?>
             <?php foreach($Friday as $row) : ?>
               <td><?php echo $row['eventname'] ?></br>
               <?php echo $row['location'] ?></br>
               <?php echo $row['starttime'] . '-' . $row['endtime'] ?></td>
             <?php endforeach; ?>
-          </tr>
-          <tr class = "item3">
-            <th><span class="Saturday">Saturday</span></th>
+          <?php
+            if(!empty($emptyFri)) {
+              echo '</tr>';
+            }
+          ?>
+          <?php
+            $emptySat = array_filter($Saturday);
+            if (!empty($emptySat)) {
+              echo  '<tr class = \'item3\'><th><span class="Saturday">Saturday</span></th>';
+            }
+          ?>
             <?php foreach($Saturday as $row) : ?>
               <td><?php echo $row['eventname'] ?></br>
               <?php echo $row['location'] ?></br>
               <?php echo $row['starttime'] . '-' . $row['endtime'] ?></td>
             <?php endforeach; ?>
-            <!-- <td id="Keller5" onmouseover="Keller5Hover();" onmouseleave="Keller5Unhover();">
-              <span id="day5class1">CSCI 3081</span><br>
-              <span class="time" id="day5time1">11:15 AM - 12:05 PM</span><br>
-              <span id="day5location1">Keller Hall 1-250, MN</span><br>
-              <a id="day5git" href="https://github.umn.edu/umn-csci-3081F17">Github</a>
-            </td> -->
-          </tr>
+          <?php
+            if(!empty($emptySat)) {
+              echo '</tr>';
+            }
+          ?>
         </table>
       </div>
       <div class="twitter">
