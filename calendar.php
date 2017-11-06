@@ -10,6 +10,49 @@
   <Title>Calendar</Title>
 </head>
 
+<?php
+  $jsonRaw = file_get_contents("calendar.txt");
+  $json = json_decode($jsonRaw, TRUE);
+  $MondayNum = 0;
+  $TuesdayNum = 0;
+  $WednesdayNum = 0;
+  $ThursdayNum = 0;
+  $FridayNum = 0;
+  $SaturdayNum = 0;
+  $SundayNum = 0;
+  foreach ($json as $event) {
+    switch ($event['day']) {
+      case 'Monday':
+        $Monday[$MondayNum] = array("eventname" => $event['eventname'], "location" => $event['location'], "starttime" => $event['starttime'], "endtime" => $event['endtime']);
+        $MondayNum += 1;
+        break;
+      case 'Tuesday':
+        $Tuesday[$TuesdayNum] = array("eventname" => $event['eventname'], "location" => $event['location'], "starttime" => $event['starttime'], "endtime" => $event['endtime']);
+        $TuesdayNum += 1;
+        break;
+      case 'Wednesday':
+        $Wednesday[$WednesdayNum] = array("eventname" => $event['eventname'], "location" => $event['location'], "starttime" => $event['starttime'], "endtime" => $event['endtime']);
+        $WednesdayNum += 1;
+        break;
+      case 'Thursday':
+        $Thursday[$ThursdayNum] = array("eventname" => $event['eventname'], "location" => $event['location'], "starttime" => $event['starttime'], "endtime" => $event['endtime']);
+        $ThursdayNum += 1;
+        break;
+      case 'Friday':
+        $Friday[$FridayNum] = array("eventname" => $event['eventname'], "location" => $event['location'], "starttime" => $event['starttime'], "endtime" => $event['endtime']);
+        $FridayNum += 1;
+        break;
+      case 'Saturday':
+        $Saturday[$TuesdayNum] = array("eventname" => $event['eventname'], "location" => $event['location'], "starttime" => $event['starttime'], "endtime" => $event['endtime']);
+        $SaturdayNum += 1;
+        break;
+      case 'Sunday':
+        $Sunday[$SundayNum] = array("eventname" => $event['eventname'], "location" => $event['location'], "starttime" => $event['starttime'], "endtime" => $event['endtime']);
+        $SundayNum += 1;
+        break;
+    }
+  }
+?>
 <body>
   <h1>Calendar</h1>
   <div class="container1">
@@ -27,24 +70,59 @@
         <table class="item1">
           <tr class = "item3">
             <th><span class="Sunday">Sunday</span></th>
+            <?php foreach($Sunday as $row) : ?>
+              <td><?php echo $row['eventname'] ?></br>
+              <?php echo $row['location'] ?></br>
+              <?php echo $row['starttime'] . '-' . $row['endtime'] ?></td>
+            <?php endforeach; ?>
           </tr>
           <tr class = "item2">
             <th><span class="Monday">Monday</span></th>
+            <?php foreach($Monday as $row) : ?>
+              <td><?php echo $row['eventname'] ?></br>
+              <?php echo $row['location'] ?></br>
+              <?php echo $row['starttime'] . '-' . $row['endtime'] ?></td>
+            <?php endforeach; ?>
           </tr>
           <tr class="item3">
             <th><span class="Tuesday">Tuesday</span></th>
+            <?php foreach($Tuesday as $row) : ?>
+              <td><?php echo $row['eventname'] ?></br>
+              <?php echo $row['location'] ?></br>
+              <?php echo $row['starttime'] . '-' . $row['endtime'] ?></td>
+            <?php endforeach; ?>
           </tr>
           <tr class = "item2">
             <th><span class="Wednesday">Wednesday</span></th>
+            <?php foreach($Wednesday as $row) : ?>
+              <td><?php echo $row['eventname'] ?></br>
+              <?php echo $row['location'] ?></br>
+              <?php echo $row['starttime'] . '-' . $row['endtime'] ?></td>
+            <?php endforeach; ?>
           </tr>
           <tr class = "item3">
             <th><span class="Thursday">Thursday</span></th>
+            <?php foreach($Thursday as $row) : ?>
+              <td><?php echo $row['eventname'] ?></br>
+              <?php echo $row['location'] ?></br>
+              <?php echo $row['starttime'] . '-' . $row['endtime'] ?></td>
+            <?php endforeach; ?>
           </tr>
           <tr class = "item2">
             <th><span class="Friday">Friday</span></th>
+            <?php foreach($Friday as $row) : ?>
+              <td><?php echo $row['eventname'] ?></br>
+              <?php echo $row['location'] ?></br>
+              <?php echo $row['starttime'] . '-' . $row['endtime'] ?></td>
+            <?php endforeach; ?>
           </tr>
           <tr class = "item3">
             <th><span class="Saturday">Saturday</span></th>
+            <?php foreach($Saturday as $row) : ?>
+              <td><?php echo $row['eventname'] ?></br>
+              <?php echo $row['location'] ?></br>
+              <?php echo $row['starttime'] . '-' . $row['endtime'] ?></td>
+            <?php endforeach; ?>
             <!-- <td id="Keller5" onmouseover="Keller5Hover();" onmouseleave="Keller5Unhover();">
               <span id="day5class1">CSCI 3081</span><br>
               <span class="time" id="day5time1">11:15 AM - 12:05 PM</span><br>
