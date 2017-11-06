@@ -52,6 +52,27 @@
         break;
     }
   }
+  usort($Sunday, function($a, $b) {
+    return $a['starttime'] - $b['starttime'];
+  });
+  usort($Monday, function($a, $b) {
+    return $a['starttime'] - $b['starttime'];
+  });
+  usort($Tuesday, function($a, $b) {
+    return $a['starttime'] - $b['starttime'];
+  });
+  usort($Wednesday, function($a, $b) {
+    return $a['starttime'] - $b['starttime'];
+  });
+  usort($Thursday, function($a, $b) {
+    return $a['starttime'] - $b['starttime'];
+  });
+  usort($Friday, function($a, $b) {
+    return $a['starttime'] - $b['starttime'];
+  });
+  usort($Saturday, function($a, $b) {
+    return $a['starttime'] - $b['starttime'];
+  });
 ?>
 <body>
   <h1>Calendar</h1>
@@ -61,9 +82,6 @@
         <a href="calendar.php">My Calendar</a>
         <a href="form.php">Form Input</a>
       </nav>
-    </div>
-    <div class="wrapper">
-      <p><span id="marquee"></span></p>
     </div>
     <div class="container2">
       <div class="table">
@@ -100,14 +118,22 @@
               <?php echo $row['starttime'] . '-' . $row['endtime'] ?></td>
             <?php endforeach; ?>
           </tr>
-          <tr class = "item3">
-            <th><span class="Thursday">Thursday</span></th>
-            <?php foreach($Thursday as $row) : ?>
-              <td><?php echo $row['eventname'] ?></br>
-              <?php echo $row['location'] ?></br>
-              <?php echo $row['starttime'] . '-' . $row['endtime'] ?></td>
-            <?php endforeach; ?>
-          </tr>
+          <?php
+            $empty = array_filter($Thursday);
+            if (!empty($empty)) {
+              echo  '<tr class = \'item3\'><th><span class="Thursday">Thursday</span></th>';
+            }
+          ?>
+          <?php foreach($Thursday as $row) : ?>
+            <td><?php echo $row['eventname'] ?></br>
+            <?php echo $row['location'] ?></br>
+            <?php echo $row['starttime'] . '-' . $row['endtime'] ?></td>
+          <?php endforeach; ?>
+          <?php
+            if(!empty($empty)) {
+              echo '</tr>';
+            } 
+          ?>
           <tr class = "item2">
             <th><span class="Friday">Friday</span></th>
             <?php foreach($Friday as $row) : ?>
@@ -176,19 +202,10 @@
     <div id="directionsPanel">
     </div>
   </div>
-    <!-- <div id="initPic"><img class = "initPic" src="images/Northrop_Mall_Winter.png" alt="Northrop (default)"></div>
-    <div id="KellerPic"><img class = "Pic" src="images/Keller_Hall_plaza.jpg" alt="Keller Hall"></div>
-    <div id="BruininksPic"><img class = "Pic" src="images/Bruininks_Hall_Picture.jpg" alt="Bruininks Hall"></div>
-    <div id="FraserPic"><img class = "Pic" src="images/Fraser_Hall.jpg" alt="Fraser Hall"></div> -->
   </div>
   <footer id="footer">
     <br>
     Tested in Chrome, Safari and Firefox
   </footer>
-  <script>
-    marquee();
-    // initMap();
-    // eventClick();
-  </script>
 </body>
 </html>
