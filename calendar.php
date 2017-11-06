@@ -1,15 +1,5 @@
 <!doctype html>
 
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="style.css">
-  <script src="script.js">
-  </script>
-
-  <Title>Calendar</Title>
-</head>
-
 <?php
   $jsonRaw = file_get_contents("calendar.txt");
   $json = json_decode($jsonRaw, TRUE);
@@ -74,6 +64,46 @@
     return $a['starttime'] - $b['starttime'];
   });
 ?>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="script.js"></script>
+  <script>
+    <?php foreach($Monday as $row) : ?>
+        var myEvent = <?php echo(json_encode($row)); ?>;
+        pushBackEvents(myEvent);
+    <?php endforeach; ?>
+    <?php foreach($Tuesday as $row) : ?>
+        var myEvent = <?php echo(json_encode($row)); ?>;
+        pushBackEvents(myEvent);
+    <?php endforeach; ?>
+    <?php foreach($Wednesday as $row) : ?>
+        var myEvent = <?php echo(json_encode($row)); ?>;
+        pushBackEvents(myEvent);
+    <?php endforeach; ?>
+    <?php foreach($Thursday as $row) : ?>
+        var myEvent = <?php echo(json_encode($row)); ?>;
+        pushBackEvents(myEvent);
+    <?php endforeach; ?>
+    <?php foreach($Friday as $row) : ?>
+        var myEvent = <?php echo(json_encode($row)); ?>;
+        pushBackEvents(myEvent);
+    <?php endforeach; ?>
+    <?php foreach($Saturday as $row) : ?>
+        var myEvent = <?php echo(json_encode($row)); ?>;
+        pushBackEvents(myEvent);
+    <?php endforeach; ?>
+    <?php foreach($Sunday as $row) : ?>
+        var myEvent = <?php echo(json_encode($row)); ?>;
+        pushBackEvents(myEvent);
+    <?php endforeach; ?>
+  </script>
+  <Title>Calendar</Title>
+</head>
+
+
 <body>
   <h1>Calendar</h1>
   <div class="container1">
@@ -83,13 +113,21 @@
         <a href="form.php">Form Input</a>
       </nav>
     </div>
+    <div class="wrapper">
+      <?php
+        $emptyjson = array_filter($json);
+        if (empty($emptyjson)) {
+          echo 'There are no events on your calendar. Please visit the Form Input to add some events.';
+        }
+      ?>
+    </div>
     <div class="container2">
       <div class="table">
         <table class="item1">
           <?php
             $emptySun = array_filter($Sunday);
             if (!empty($emptySun)) {
-              echo  '<tr class = \'item3\'><th><span class="Sunday">Sunday</span></th>';
+              echo  '<tr class = \'item2\'><th><span class="Sunday">Sunday</span></th>';
             }
           ?>
             <?php foreach($Sunday as $row) : ?>
@@ -121,7 +159,7 @@
           <?php
             $emptyTue = array_filter($Tuesday);
             if (!empty($emptyTue)) {
-              echo  '<tr class = \'item3\'><th><span class="Tuesday">Tuesday</span></th>';
+              echo  '<tr class = \'item2\'><th><span class="Tuesday">Tuesday</span></th>';
             }
           ?>
             <?php foreach($Tuesday as $row) : ?>
@@ -153,7 +191,7 @@
           <?php
             $emptyThur = array_filter($Thursday);
             if (!empty($emptyThur)) {
-              echo  '<tr class = \'item3\'><th><span class="Thursday">Thursday</span></th>';
+              echo  '<tr class = \'item2\'><th><span class="Thursday">Thursday</span></th>';
             }
           ?>
           <?php foreach($Thursday as $row) : ?>
@@ -185,7 +223,7 @@
           <?php
             $emptySat = array_filter($Saturday);
             if (!empty($emptySat)) {
-              echo  '<tr class = \'item3\'><th><span class="Saturday">Saturday</span></th>';
+              echo  '<tr class = \'item2\'><th><span class="Saturday">Saturday</span></th>';
             }
           ?>
             <?php foreach($Saturday as $row) : ?>
@@ -200,48 +238,12 @@
           ?>
         </table>
       </div>
-      <div class="twitter">
-        <a class="twitter-timeline"  href="https://twitter.com/hashtag/UMN" data-widget-id="920352412593999872">#UMN Tweets</a>
-        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-      </div>
-    <div id="mapInput">
-    <div id="restaurantRange">
-      <form id="restaurant">
-
-        <div id="mileRange"><b>Search for nearby restaurants</b></div>
-        <div id="mileIncr">
-          Miles: <span id="Distance">0</span>&nbsp; <input type="button" onclick="increment();" value="+"><br>
-
-        </div>
-        <div id="buttonholder">
-          Specify a range:
-          <input type="number" name="Distance" id="updateNum" value="0">
-          <input id="centerSubmit" onclick="setRange();" type="button" value="Find Restaurants">
-        </div>
-      </form>
-    </div>
-    <div id="Destination">
-      <form id="destination">
-        <div id="travelType">
-          <b>Get directions from your location:</b>
-          <input type="text" id="dest" name="dest" placeholder="Destination">
-          <input onclick="getDirections();" type="button" value="Get Directions"><br>
-          &nbsp; &nbsp;<input type="radio" name="travel" value="WALKING">&nbsp; Walking<br>
-          &nbsp; &nbsp;<input type="radio" name="travel" value="BICYCLING">&nbsp; Biking<br>
-          &nbsp; &nbsp;<input type="radio" name="travel" value="TRANSIT">&nbsp; Public Transit<br>
-          &nbsp; &nbsp;<input type="radio" name="travel" value="DRIVING">&nbsp; Driving<br>
-        </div>
-      </form>
-    </div>
-  </div>
   </div>
 
   <div id="Maps">
     <div id = "map">
       <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgmOCL_dIeyMAlX2y00iUqAzBN5j7svdo&libraries=places&callback=initMap">
       </script>
-    </div>
-    <div id="directionsPanel">
     </div>
   </div>
   </div>

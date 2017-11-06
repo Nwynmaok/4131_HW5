@@ -1,37 +1,3 @@
-function marquee() {
-  let d = new Date();
-  var n = d.getDay();
-  if (n === 0 | n === 6) {
-    document.getElementById('marquee').innerHTML="It is the weekend! No events today."
-  } else if (n === 1 | n === 3) {
-    let todayText = document.getElementById("day"+n+"class1").innerHTML;
-    todayText += " : " + document.getElementById("day"+n+"time1").innerHTML;
-    todayText += " : " + document.getElementById("day"+n+"location1").innerHTML;
-    todayText += "  ||  " + document.getElementById("day"+n+"class2").innerHTML;
-    todayText += " : " + document.getElementById("day"+n+"time2").innerHTML;
-    todayText += " : " + document.getElementById("day"+n+"location2").innerHTML;
-    todayText += "  ||  " + document.getElementById("day"+n+"class3").innerHTML;
-    todayText += " : " + document.getElementById("day"+n+"time3").innerHTML;
-    todayText += " : " + document.getElementById("day"+n+"location3").innerHTML;
-    todayText += "  ||  " + document.getElementById("day"+n+"class4").innerHTML;
-    todayText += " : " + document.getElementById("day"+n+"time4").innerHTML;
-    todayText += " : " + document.getElementById("day"+n+"location4").innerHTML;
-    document.getElementById('marquee').innerHTML=todayText;
-  } else if (n === 4 | n === 5) {
-    let todayText = document.getElementById("day"+n+"class1").innerHTML;
-    todayText += " : " + document.getElementById("day"+n+"time1").innerHTML;
-    todayText += " : " + document.getElementById("day"+n+"location1").innerHTML;
-    document.getElementById('marquee').innerHTML=todayText;
-  } else if (n === 2) {
-    let todayText = document.getElementById("day"+n+"class1").innerHTML;
-    todayText += " : " + document.getElementById("day"+n+"time1").innerHTML;
-    todayText += " : " + document.getElementById("day"+n+"location1").innerHTML;
-    todayText += "  ||  " + document.getElementById("day"+n+"class2").innerHTML;
-    todayText += " : " + document.getElementById("day"+n+"time2").innerHTML;
-    todayText += " : " + document.getElementById("day"+n+"location2").innerHTML;
-    document.getElementById('marquee').innerHTML=todayText;
-  }
-}
 function validateForm() {
   var x = document.forms["myForm"]["eventname"].value;
   if (x == "") {
@@ -75,7 +41,12 @@ var pos;
 var geocoder;
 var markers = [];
 var directionsDisplay;
+var events = [];
 var UMN = {lat: 44.9729, lng: -93.2353};
+
+function pushBackEvents(event) {
+  events.push(event);
+}
 
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
@@ -207,8 +178,7 @@ function getDirections() {
   }
 }
 
-function increment()
-{
+function increment() {
   var value = document.getElementById('Distance');
   var number = parseFloat(value.innerHTML);
   number += .25;
@@ -216,8 +186,7 @@ function increment()
   updateMarkers();
 }
 
-function setRange()
-{
+function setRange() {
   var newNum = document.getElementById("updateNum").value;
   if(!newNum) {
     newNum = 0;
@@ -231,8 +200,7 @@ function setRange()
   updateMarkers();
 }
 
-function Decrement()
-{
+function Decrement() {
   var value = document.getElementById('Distance');
   var number = parseFloat(value.innerHTML);
   number -= .25;
@@ -245,162 +213,29 @@ function geocodeAddress(geocoder, resultsMap) {
   let addresses = [];
   let infowindows = [];
   let markers = [];
-  for (var i = 0; i < 3; i += 1) {
-    addresses[i] = document.getElementById('day' + 1 + 'location' + (i+1)).innerHTML;
+  let iter = 0;
+  for (var i = 0; i < events.length; i += 1) {
+    geocoder.geocode({address : events[i].location}, function(results, status) {
+      if (status === 'OK') {
+        markers[iter] = new google.maps.Marker({
+          map: resultsMap,
+          position: results[0].geometry.location
+        });
+        markers[iter].setAnimation(google.maps.Animation.BOUNCE);
+        content = events[iter].location + "</br>" + events[iter].eventname + "</br>" + events[iter].starttime + "-" + events[iter].endtime;
+        infowindows[iter] = new google.maps.InfoWindow({
+          content: content,
+          maxWidth: 300
+        });
+        google.maps.event.addListener(markers[iter], 'click', (function(marker, iter) {
+          return function() {
+            infowindows[iter].open(map, markers[iter]);
+          }
+        })(markers[iter], iter));
+        iter += 1;
+      } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
   }
-  addresses[3] = document.getElementById('day' + 2 + 'location' + 2).innerHTML;
-  geocoder.geocode({'address' : addresses[0]}, function(results, status) {
-    if (status === 'OK') {
-      markers[0] = new google.maps.Marker({
-        map: resultsMap,
-        position: results[0].geometry.location
-      });
-      markers[0].setAnimation(google.maps.Animation.BOUNCE);
-      content = "Keller Hall</br>";
-      content += "Monday:</br>";
-      content += document.getElementById("Keller1").innerHTML;
-      content += "</br>";
-      content += "</br>";
-      content += "Tuesday:</br>";
-      content += document.getElementById("Keller2").innerHTML;
-      content += "</br>";
-      content += "</br>";
-      content += "Wednesday:</br>";
-      content += document.getElementById("Keller3").innerHTML;
-      content += "</br>";
-      content += "</br>";
-      content += "Thursday:</br>";
-      content += document.getElementById("Keller4").innerHTML;
-      content += "</br>";
-      content += "</br>";
-      content += "Friday:</br>";
-      content += document.getElementById("Keller5").innerHTML;
-      infowindows[0] = new google.maps.InfoWindow({
-        content: content,
-        maxWidth: 300
-      });
-      markers[0].addListener('click', function() {
-        infowindows[0].open(map, markers[0]);
-      });
-      markers[0].addListener('mouseover', function() {
-        Keller1Hover();
-        Keller2Hover();
-        Keller3Hover();
-        Keller4Hover();
-        Keller5Hover();
-      });
-      markers[0].addListener('mouseout', function() {
-        Keller1Unhover();
-        Keller2Unhover();
-        Keller3Unhover();
-        Keller4Unhover();
-        Keller5Unhover();
-      });
-    } else {
-      alert('Geocode was not successful for the following reason: ' + status);
-    }
-  });
-  geocoder.geocode({'address' : addresses[1]}, function(results, status) {
-    if (status === 'OK') {
-      markers[1] = new google.maps.Marker({
-        map: resultsMap,
-        position: results[0].geometry.location
-      });
-      markers[1].setAnimation(google.maps.Animation.BOUNCE);
-      content = "Bruininks Hall</br>";
-      content += "Monday:</br>";
-      content += document.getElementById("Bruininks1").innerHTML;
-      content += "</br>";
-      content += "</br>";
-      content += document.getElementById("Bruininks2").innerHTML;
-      content += "</br>";
-      content += "</br>";
-      content += "Wednesday:</br>";
-      content += document.getElementById("Bruininks3").innerHTML;
-      content += "</br>";
-      content += "</br>";
-      content += document.getElementById("Bruininks4").innerHTML;
-      infowindows[1] = new google.maps.InfoWindow({
-        content: content,
-        maxWidth: 300
-      });
-      markers[1].addListener('click', function() {
-        infowindows[1].open(map, markers[1]);
-      });
-      markers[1].addListener('mouseover', function() {
-        Bruininks1Hover();
-        Bruininks2Hover();
-        Bruininks3Hover();
-        Bruininks4Hover();
-      });
-      markers[1].addListener('mouseout', function() {
-        Bruininks1Unhover();
-        Bruininks2Unhover();
-        Bruininks3Unhover();
-        Bruininks4Unhover();
-      });
-    } else {
-      alert('Geocode was not successful for the following reason: ' + status);
-    }
-  });
-  geocoder.geocode({'address' : addresses[2]}, function(results, status) {
-    if (status === 'OK') {
-      markers[2] = new google.maps.Marker({
-        map: resultsMap,
-        position: results[0].geometry.location
-      });
-      markers[2].setAnimation(google.maps.Animation.BOUNCE);
-      content = "Fraser Hall</br>";
-      content += "Monday:</br>";
-      content += document.getElementById("Fraser1").innerHTML;
-      content += "</br>";
-      content += "</br>";
-      content += "Wednesday:</br>";
-      content += document.getElementById("Fraser2").innerHTML;
-      infowindows[2] = new google.maps.InfoWindow({
-        content: content,
-        maxWidth: 300
-      });
-      markers[2].addListener('click', function() {
-        infowindows[2].open(map, markers[2]);
-      });
-      markers[2].addListener('mouseover', function() {
-        Fraser1Hover();
-        Fraser2Hover();
-      });
-      markers[2].addListener('mouseout', function() {
-        Fraser1Unhover();
-        Fraser2Unhover();
-      });
-    } else {
-      alert('Geocode was not successful for the following reason: ' + status);
-    }
-  });
-  geocoder.geocode({'address' : addresses[3]}, function(results, status) {
-    if (status === 'OK') {
-      markers[3] = new google.maps.Marker({
-        map: resultsMap,
-        position: results[0].geometry.location
-      });
-      markers[3].setAnimation(google.maps.Animation.BOUNCE);
-      content = "Lind Hall</br>";
-      content += "Tuesday:</br>";
-      content += document.getElementById("Lind1").innerHTML;
-      infowindows[3] = new google.maps.InfoWindow({
-        content: content,
-        maxWidth: 300
-      });
-      markers[3].addListener('click', function() {
-        infowindows[3].open(map, markers[3]);
-      });
-      markers[3].addListener('mouseover', function() {
-        Lind1Hover();
-      });
-      markers[3].addListener('mouseout', function() {
-        Lind1Unhover();
-      });
-    } else {
-      alert('Geocode was not successful for the following reason: ' + status);
-    }
-  });
 }

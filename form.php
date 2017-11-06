@@ -9,6 +9,7 @@
 
 <?php
   if (isset($_POST['myEvent'])) {
+    $filename = 'calendar.txt';
 
     $eventname = $_POST["eventname"];
     $day = $_POST["day"];
@@ -16,12 +17,17 @@
     $endtime = $_POST["endtime"];
     $location = $_POST["location"];
 
-    $json = json_decode(file_get_contents('calendar.txt'), TRUE);
+    if (file_exists($filename)) {
+      // do nothing
+    } else {
+      file_put_contents($filename, '');
+    }
+    $json = json_decode(file_get_contents($filename), TRUE);
     $eventCount = count($json);
     $eventnum = "event" . $eventCount;
 
     $json[$eventnum] = array("eventname" => $eventname, "day" => $day, "starttime" => $starttime, "endtime" => $endtime, "location" => $location);
-    file_put_contents('calendar.txt', json_encode($json));
+    file_put_contents($filename, json_encode($json));
     header('Location: calendar.php');
   }
 
